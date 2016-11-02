@@ -13,6 +13,8 @@ namespace SetOperations.Client
             TryUnion(set, 1, 2, 1);
             TryUnion(set, 3, 4, 3);
             TryUnion(set, 1, 3, 1);
+            TryFind(set, 3);
+            TryFind(set, 6);
 
 
             Console.ReadKey();
@@ -32,6 +34,24 @@ namespace SetOperations.Client
             }
 
             Console.WriteLine(set.ToString());
+        }
+
+        private static void TryFind(Set set, int i)
+        {
+            int name;
+
+            Console.WriteLine($"Find({i}):");
+            try
+            {
+                name = set.Find(i);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine($"An error occurred: {exception}!");
+                return;
+            }
+
+            Console.WriteLine($"Found in: {name}");
         }
     }
 }
