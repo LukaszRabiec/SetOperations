@@ -2,6 +2,8 @@
 
 namespace SetOperations
 {
+    using System.Linq;
+
     public class Set
     {
         private int[] _elements;
@@ -10,22 +12,20 @@ namespace SetOperations
         private int[] _father;
         private int[] _root;
 
+        public Set(int setSize)
+        {
+            InitializeArrays(setSize);
+        }
+
         public Set(IReadOnlyList<int> dataSet)
         {
             int size = dataSet.Count;
+            InitializeArrays(size);
             _elements = new int[size];
-            _count = new int[size];
-            _name = new int[size];
-            _father = new int[size];
-            _root = new int[size];
 
             for (int i = 0; i < size; i++)
             {
                 _elements[i] = dataSet[i];
-                _count[i] = 1;
-                _name[i] = i;
-                _father[i] = -1;
-                _root[i] = i;
             }
         }
 
@@ -66,6 +66,16 @@ namespace SetOperations
             return _name[v];
         }
 
+        public bool IsSameRoot(int i, int j)
+        {
+            return _root[i] == _root[j];
+        }
+
+        public int MaxCount()
+        {
+            return _count.Max();
+        }
+
         public override string ToString()
         {
             string resultString = "Element | Name | Root | Father | Count\n";
@@ -76,6 +86,22 @@ namespace SetOperations
             }
 
             return resultString;
+        }
+
+        private void InitializeArrays(int size)
+        {
+            _count = new int[size];
+            _name = new int[size];
+            _father = new int[size];
+            _root = new int[size];
+
+            for (int i = 0; i < size; i++)
+            {
+                _count[i] = 1;
+                _name[i] = i;
+                _father[i] = -1;
+                _root[i] = i;
+            }
         }
     }
 }
