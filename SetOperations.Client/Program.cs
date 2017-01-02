@@ -70,7 +70,7 @@ namespace SetOperations.Client
         {
             var graphFile = "Data/Graph1.json";
             var mst = new MinimumSpanningTree(graphFile);
-            //var mst = new MinimumSpanningTree(RandomizeCostMatrix(10));
+            //var mst = new MinimumSpanningTree(RandomizeCostMatrix(5));
 
             Console.WriteLine(mst.ToString());
 
@@ -95,7 +95,7 @@ namespace SetOperations.Client
         {
             var costMatrix = new int[size, size];
 
-            Random rand = new Random();
+            Random rand = new Random(36578);
 
             for (int vertice = 0; vertice < size; vertice++)
             {

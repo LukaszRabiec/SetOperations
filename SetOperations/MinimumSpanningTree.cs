@@ -38,8 +38,10 @@
                 {
                     if (!_sets.IsSameRoot(vertice1, vertice2))
                     {
-                        _sets.Union(vertice1, vertice2, vertice1);
-                        _actualSetsIndexes.Remove(vertice2);
+                        int set1 = _sets.Find(vertice1);
+                        int set2 = _sets.Find(vertice2);
+
+                        _sets.Union(set1, set2, set1);
                         result.Push(new Edge(vertice1, vertice2, edge.Cost));
 
                         if (_sets.MaxCount() == _costMatrix.GetLength(0))
